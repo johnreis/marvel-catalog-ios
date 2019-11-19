@@ -1,0 +1,5 @@
+{
+    "url": "http://gateway.marvel.com/v1/public/",
+    "publicKey": "YOUR_PUBLIC_KEY",
+    "privateKey": "YOUR_PRIVATE_KEY"
+}
