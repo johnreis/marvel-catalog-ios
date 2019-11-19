@@ -38,15 +38,15 @@ class CatalogDetailViewController: UIViewController {
     }
     
     private func showButtons() {
-        if self.viewModel.character.getLink(to: .detail) != nil {
+        if self.viewModel.getLink(to: .detail) != nil {
             self.buttonDetail.isHidden = false
         }
         
-        if self.viewModel.character.getLink(to: .wiki) != nil {
+        if self.viewModel.getLink(to: .wiki) != nil {
             self.buttonWiki.isHidden = false
         }
         
-        if self.viewModel.character.getLink(to: .comiclink) != nil {
+        if self.viewModel.getLink(to: .comiclink) != nil {
             self.buttonComics.isHidden = false
         }
         
@@ -73,12 +73,14 @@ class CatalogDetailViewController: UIViewController {
     }
     
     func setupUI() {
-        self.title = self.viewModel.character.name
+        self.title = self.viewModel.characterName()
         self.hideButtons()
         self.view.showActivityIndicator(self.activityIndicator)
         self.setupThumbnail()
-        self.labelCharacterName.text = "\(self.viewModel.character.name) ·"
-        self.labelCharacterDescription.text = self.viewModel.character.description.isEmpty ? "No description available." : self.viewModel.character.description
+        self.labelCharacterName.text = "\(self.viewModel.characterName()) ·"
+        
+        let description = self.viewModel.characterDescription()
+        self.labelCharacterDescription.text = description.isEmpty ? "No description available." : description
     }
     
     @IBAction func openLink(_ sender: UIButton) {
@@ -86,13 +88,13 @@ class CatalogDetailViewController: UIViewController {
         
         switch sender {
             case self.buttonDetail:
-                link = self.viewModel.character.getLink(to: .detail)?.url
+                link = self.viewModel.getLink(to: .detail)?.url
                 break
             case self.buttonWiki:
-                link = self.viewModel.character.getLink(to: .wiki)?.url
+                link = self.viewModel.getLink(to: .wiki)?.url
                 break
             default:
-                link = self.viewModel.character.getLink(to: .comiclink)?.url
+                link = self.viewModel.getLink(to: .comiclink)?.url
                 break
         }
         
