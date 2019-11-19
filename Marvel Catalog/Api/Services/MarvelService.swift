@@ -18,14 +18,9 @@ class MarvelService {
         self.config = config
     }
     
-    func characters(completionHandler: @escaping (AFDataResponse<MarvelCharactersResult>) -> Void) {
-        AF.request(config.url(with: "characters"), parameters: config.params(), encoding: URLEncoding.queryString)
+    func characters(offset: Int, completionHandler: @escaping (AFDataResponse<MarvelCharactersResult>) -> Void) {
+        AF.request(config.url(with: "characters"), parameters: config.params(offset: offset), encoding: URLEncoding.queryString)
             .responseDecodable(of: MarvelCharactersResult.self, completionHandler: completionHandler)
-    }
-    
-    func thumbnail(thumbnailUrl: String, completionHandler: @escaping (AFDataResponse<Data>) -> Void) {
-        AF.request(thumbnailUrl)
-        .responseData(completionHandler: completionHandler)
     }
 }
 

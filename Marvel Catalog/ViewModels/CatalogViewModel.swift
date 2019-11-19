@@ -11,35 +11,43 @@ import Alamofire
 
 class CatalogViewModel {
     
-    var characters: [MarvelCharacter] = []
-    var refreshing: Bool = false
-    var fetchedCharacters: Int = 0
+    private var characters: [MarvelCharacter] = []
     
-    var service: MarvelService!
+    private var service: MarvelService!
     
     init(service: MarvelService) {
         self.service = service
     }
     
-    func characters(completionHandler: @escaping () -> Void)  {
-        self.refreshing = true
-        self.service.characters { (result) in
-
-            if let value = result.value {
-                
-                self.fetchedCharacters = value.data.count
-                self.characters += value.data.results.filter({ (character) -> Bool in
-                    return !character.thumbnail.path.contains("image_not_available")
-                })
-                
-            }
-            
-            self.refreshing = false
-            completionHandler()
+    func numberOfItems() -> Int {
+        return self.characters.count
+    }
+    
+    func cellViewModel(for indexPath: IndexPath) -> CatalogCellViewModel {
+        return CatalogCellViewModel(service: self.service, character: self.characters[indexPath.row])
+    }
+    
+    func detailViewModel(for indexPath: IndexPath) -> CatalogDetailViewModel {
+        return CatalogDetailViewModel(service: self.service, character: self.characters[indexPath.row])
+    }
+    
+    
+    func fetchIfNeeded(for indexPath: IndexPath, completionHandler: @escaping () -> Void) {
+        if indexPath.row == self.numberOfItems() - 1 {
+            self.fetchCharacters(offset: self.numberOfItems(), completionHandler: completionHandler)
         }
     }
     
-    func setup(with character: MarvelCharacter, completionHandler: @escaping (AFDataResponse<Data>) -> Void) {
-        self.service.thumbnail(thumbnailUrl: character.thumbnail.urlPath(type: .portraitMedium), completionHandler: completionHandler)
+    func fetchCharacters(offset: Int, completionHandler: @escaping () -> Void)  {
+        self.service.characters(offset: offset) { (result) in
+
+            if let value = result.value {
+                self.characters += value.data.results.filter({ (character) -> Bool in
+                    return !character.thumbnail.path.contains("image_not_available")
+                })
+            }
+            
+            completionHandler()
+        }
     }
 }

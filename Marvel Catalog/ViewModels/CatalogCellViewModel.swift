@@ -1,22 +1,21 @@
 //
-//  CatalogDetailViewModel.swift
+//  CatalogCellViewModel.swift
 //  Marvel Catalog
 //
-//  Created by John Lenon Reis on 16/11/19.
+//  Created by John Lenon Reis on 19/11/19.
 //  Copyright © 2019 John Lenon Reis. All rights reserved.
 //
 
 import Foundation
 import Alamofire
 
-class CatalogDetailViewModel {
+class CatalogCellViewModel {
     
     var service: MarvelService!
     var character: MarvelCharacter!
-    var urls: [MarvelUrl] = []
     
     var thumbnailURL: String {
-        return self.character.thumbnail.urlPath(type: .portraitFantastic)
+        return self.character.thumbnail.urlPath(type: .portraitMedium)
     }
     
     init(service: MarvelService, character: MarvelCharacter) {

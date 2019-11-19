@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		520AB68B2384A70800F8E5FA /* CatalogCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520AB68A2384A70800F8E5FA /* CatalogCellViewModel.swift */; };
+		520AB68D2384B05500F8E5FA /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520AB68C2384B05500F8E5FA /* UIImageViewExtensions.swift */; };
 		523AC9B1237E4BF40086FD71 /* CatalogCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523AC9B0237E4BF40086FD71 /* CatalogCollectionViewController.swift */; };
 		523AC9B4237E4FB00086FD71 /* CatalogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523AC9B3237E4FB00086FD71 /* CatalogViewModel.swift */; };
 		523AC9B5237E56550086FD71 /* MarvelUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52844173237E48C7004D16C9 /* MarvelUrl.swift */; };
@@ -63,6 +65,8 @@
 /* Begin PBXFileReference section */
 		09FA3208D2256FB7E7EC1462 /* Pods-Marvel CatalogTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Marvel CatalogTests.release.xcconfig"; path = "Target Support Files/Pods-Marvel CatalogTests/Pods-Marvel CatalogTests.release.xcconfig"; sourceTree = "<group>"; };
 		49FDA791275196202D912A7B /* Pods_Marvel_Catalog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Marvel_Catalog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		520AB68A2384A70800F8E5FA /* CatalogCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogCellViewModel.swift; sourceTree = "<group>"; };
+		520AB68C2384B05500F8E5FA /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		523AC9B0237E4BF40086FD71 /* CatalogCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogCollectionViewController.swift; sourceTree = "<group>"; };
 		523AC9B3237E4FB00086FD71 /* CatalogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewModel.swift; sourceTree = "<group>"; };
 		526D0DE0237FA075002C9710 /* CatalogDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogDetailViewModel.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 			children = (
 				523AC9B3237E4FB00086FD71 /* CatalogViewModel.swift */,
 				526D0DE0237FA075002C9710 /* CatalogDetailViewModel.swift */,
+				520AB68A2384A70800F8E5FA /* CatalogCellViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -238,6 +243,7 @@
 				5284419C237E49AB004D16C9 /* StringExtensions.swift */,
 				5284419B237E49AB004D16C9 /* UIImageExtensions.swift */,
 				5284419D237E49AC004D16C9 /* UIViewExtensions.swift */,
+				520AB68C2384B05500F8E5FA /* UIImageViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -569,6 +575,7 @@
 				526D0DE3237FA0CE002C9710 /* CatalogDetailViewController.swift in Sources */,
 				526D0DE1237FA075002C9710 /* CatalogDetailViewModel.swift in Sources */,
 				528441A1237E49AC004D16C9 /* UIViewExtensions.swift in Sources */,
+				520AB68D2384B05500F8E5FA /* UIImageViewExtensions.swift in Sources */,
 				52844183237E48C8004D16C9 /* Resource.swift in Sources */,
 				52844182237E48C8004D16C9 /* Events.swift in Sources */,
 				528441A0237E49AC004D16C9 /* StringExtensions.swift in Sources */,
@@ -580,6 +587,7 @@
 				5284417E237E48C8004D16C9 /* Stories.swift in Sources */,
 				5284417C237E48C8004D16C9 /* Data.swift in Sources */,
 				52844181237E48C8004D16C9 /* MarvelCharactersResult.swift in Sources */,
+				520AB68B2384A70800F8E5FA /* CatalogCellViewModel.swift in Sources */,
 				52844197237E4970004D16C9 /* HashGenerator.swift in Sources */,
 				523AC9B1237E4BF40086FD71 /* CatalogCollectionViewController.swift in Sources */,
 				52844194237E4948004D16C9 /* ApiConfiguration.swift in Sources */,

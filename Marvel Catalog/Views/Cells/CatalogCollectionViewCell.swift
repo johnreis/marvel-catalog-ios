@@ -12,4 +12,15 @@ class CatalogCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageViewCharacter: UIImageView!
     
+    var viewModel: CatalogCellViewModel! {
+        didSet {
+            self.imageViewCharacter.download(from: self.viewModel.thumbnailURL)
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.imageViewCharacter.image = nil
+    }
 }

@@ -65,15 +65,11 @@ class CatalogDetailViewController: UIViewController {
     }
     
     private func setupThumbnail() {
-        self.viewModel.thumbnail(completionHandler: { data in
-            if let data = data.value {
-                let thumbnail = UIImage(data: data)
-                self.imageViewThumbnail.image = thumbnail
-                self.changeButtonsBackgroundColor(to: thumbnail?.averageColor)
-                self.view.hideActivityIndicator(self.activityIndicator)
-                self.showButtons()
-            }
-        })
+        self.imageViewThumbnail.download(from: self.viewModel.thumbnailURL) { (data) in
+            self.changeButtonsBackgroundColor(to: data?.averageColor)
+            self.view.hideActivityIndicator(self.activityIndicator)
+            self.showButtons()
+        }
     }
     
     func setupUI() {

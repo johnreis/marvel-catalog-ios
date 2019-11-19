@@ -22,13 +22,13 @@ class CatalogCollectionViewController: UICollectionViewController {
             )
         )
         
-        self.fetchCharacters()
+        self.fetchCharacters(offset: 0)
     }
     
-    func fetchCharacters() {
+    func fetchCharacters(offset: Int) {
         self.view.showActivityIndicator(self.activityIndicator)
         self.activityIndicator.startAnimating()
-        self.viewModel.characters {
+        self.viewModel.fetchCharacters(offset: offset) {
             self.view.hideActivityIndicator(self.activityIndicator)
             self.collectionView.reloadData()
         }
@@ -36,27 +36,24 @@ class CatalogCollectionViewController: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let viewController = segue.destination as! CatalogDetailViewController
-        let index = self.collectionView.indexPathsForSelectedItems?.first?.row
-        let character = self.viewModel.characters[index!]
-        viewController.viewModel = CatalogDetailViewModel(service: viewModel.service,character: character)
+        let indexPath = self.collectionView.indexPathsForSelectedItems?.first
+        viewController.viewModel = self.viewModel.detailViewModel(for: indexPath!)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellIdentifier, for: indexPath) as! CatalogCollectionViewCell
-        
-        let character = self.viewModel.characters[indexPath.row]
-        
-        self.viewModel.setup(with: character, completionHandler: { response in
-            if let data = response.data {
-                cell.imageViewCharacter.image = UIImage(data: data)
-            }
-        })
-        
+        cell.viewModel = self.viewModel.cellViewModel(for: indexPath)
         return cell
     }
     
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.viewModel.fetchIfNeeded(for: indexPath) {
+            self.collectionView.reloadData()
+        }
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.characters.count
+        return self.viewModel.numberOfItems()
     }
     
 }
@@ -64,8 +61,7 @@ class CatalogCollectionViewController: UICollectionViewController {
 extension CatalogCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.size.width
-        return CGSize(width: width * 0.28, height: 160)
+        return CGSize(width: view.frame.size.width * 0.28, height: 160)
     }
     
 }

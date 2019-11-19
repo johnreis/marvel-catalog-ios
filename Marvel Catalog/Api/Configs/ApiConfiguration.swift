@@ -84,10 +84,11 @@ class ApiConfiguration {
         return "\(url)\(path)";
     }
     
-    func params()-> Parameters {
+    func params(offset: Int)-> Parameters {
         let ts = String(Date().timeIntervalSince1970 * 1000)
         
         return [
+            "offset": offset,
             "limit": 100,
             "orderBy": "-modified",
             "ts": ts,
