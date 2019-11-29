@@ -84,16 +84,13 @@ class ApiConfiguration {
         return "\(url)\(path)";
     }
     
-    func params(offset: Int)-> Parameters {
-        let ts = String(Date().timeIntervalSince1970 * 1000)
+    func params() -> ApiParams {
+        let timestamp = String(Date().timeIntervalSince1970 * 1000)
         
-        return [
-            "offset": offset,
-            "limit": 100,
-            "orderBy": "-modified",
-            "ts": ts,
-            "apikey": self.publicKey,
-            "hash": HashGenerator.hash(ts: ts, privateKey: self.privateKey, publicKey: self.publicKey)
-        ]
+        return ApiParams()
+            .limit(100)
+            .hash(ts: timestamp, privateKey: self.privateKey, publicKey: self.publicKey)
+            .timestamp(timestamp)
+            .apikey(self.publicKey)
     }
 }

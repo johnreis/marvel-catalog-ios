@@ -6,6 +6,6 @@ struct MarvelData: Codable{
     var results: [MarvelCharacter]
 
     func hasMore()-> Bool {
-        return (offset * limit) + count < total
+        return (offset + count) < total
     }
 }

@@ -18,8 +18,16 @@ class MarvelService {
         self.config = config
     }
     
-    func characters(offset: Int, completionHandler: @escaping (AFDataResponse<MarvelCharactersResult>) -> Void) {
-        AF.request(config.url(with: "characters"), parameters: config.params(offset: offset), encoding: URLEncoding.queryString)
+    func characters(offset: Int, name: String? = nil, completionHandler: @escaping (AFDataResponse<MarvelCharactersResult>) -> Void) {
+        let params = config.params().offset(offset)
+        
+        if let name = name {
+            if !name.isEmpty {
+                params.name(name)
+            }
+        }
+        
+        AF.request(config.url(with: "characters"), parameters: params.build(), encoding: URLEncoding.queryString)
             .responseDecodable(of: MarvelCharactersResult.self, completionHandler: completionHandler)
     }
 }
