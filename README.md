@@ -26,6 +26,14 @@ Deve se alterar o arquivo [Marvel Catalog/Api/Configs/ApiConfiguration.json](Mar
 }
 ```
 
+
+### @todo
+- [x] Fetch characters
+- [x] Add pagination
+- [x] Add animation in details
+- [x] Add Seach Bar
+- [ ] Check internet connection
+
 ### Exemplo da aplicação em execução (GIF em baixa qualidade)
 
 <img src="https://media.giphy.com/media/dCLGMX73BwyebAIrVA/giphy.gif" width="400">
