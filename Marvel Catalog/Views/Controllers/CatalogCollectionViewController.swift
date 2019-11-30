@@ -21,6 +21,9 @@ class CatalogCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Not the best way to do that
+        // but i don't have learned router yet
         self.viewModel = CatalogViewModel(
             service: MarvelService(
                 config: ApiConfiguration.shared
