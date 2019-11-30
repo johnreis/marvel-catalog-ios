@@ -19,11 +19,11 @@ class MarvelService {
     }
     
     func characters(offset: Int, name: String? = nil, completionHandler: @escaping (AFDataResponse<MarvelCharactersResult>) -> Void) {
-        let params = config.params().offset(offset)
+        var params = config.params().offset(offset)
         
         if let name = name {
             if !name.isEmpty {
-                params.name(name)
+                params = params.name(name)
             }
         }
         

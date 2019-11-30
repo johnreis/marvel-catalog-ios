@@ -27,26 +27,24 @@ class CatalogCollectionViewController: UICollectionViewController {
             )
         )
         
-        self.addSearchController()
+        self.setupSearchBar()
         self.fetchCharacters(offset: 0)
     }
     
-    func addSearchController() {
+    func setupSearchBar() {
         self.searchController.searchResultsUpdater = self
         self.searchController.delegate = self
         self.searchController.searchBar.delegate = self
         
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search your character"
         searchController.searchBar.sizeToFit()
-        
         searchController.searchBar.searchTextField.textColor = .white
         searchController.searchBar.becomeFirstResponder()
         
-        self.navigationItem.titleView = searchController.searchBar
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = true
     }
-    
+        
     func fetchCharacters(offset: Int, name: String? = nil) {
         self.view.showActivityIndicator(self.activityIndicator)
         self.activityIndicator.startAnimating()
